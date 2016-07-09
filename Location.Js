@@ -1,17 +1,21 @@
 var x = document.getElementById("coordinate");
-var location;
+var latitude,longitude;
 
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition,errormsg);
+        //document.forms.submit();
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
-    }
+    }   
 }
+
 function showPosition(position) {
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    location = "http://maps.googleapis.com/maps/api/geocode/json?&latlng="+latitude+','+longitude+"&sensor=true";
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    console.log("latitude");
+    showlocation();
+    console.log(location);
  }
 
 function errormsg(error) {
@@ -19,11 +23,11 @@ function errormsg(error) {
  }
 
 function showlocation() {
-    var a = document.querySelector('#location');
+    console.log(location);
     var address;
     $.ajax({
-        url: location,
-        type: "POST",
+        url: "http://maps.googleapis.com/maps/api/geocode/json?&latlng="+latitude+','+longitude+"&sensor=true",
+        type: "GET",
         dataType: "JSON",
         success: function(response){
             console.log(response);

@@ -2,12 +2,14 @@
 <html>
     <head>
         <title>Form</title>
+        <script src="jquery-1.12.3.js"></script>
     </head>
     <body>
-        <form>
-            <button onclick="getLocation()">Get Location</button>
-        </form>
+        <button type="button" onclick="getLocation()">Get Location</button>
         <div id=coordinate></div>
+        <h2>Your location</h2>
+        <div id="address">
+        </div>
         <script src="Location.Js"></script>
     </body>
 </html>
